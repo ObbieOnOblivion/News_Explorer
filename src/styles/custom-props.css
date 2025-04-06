@@ -1,0 +1,25 @@
+/* Design Tokens */
+:root {
+    /* Colors */
+    --color-primary: hsl(221, 83%, 53%);
+    --color-surface: hsl(0, 0%, 100%);
+    
+    /* Typography */
+    --font-base: system-ui, sans-serif;
+    
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+  }
+  
+  /* Dark Mode */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-surface: hsl(240, 10%, 4%);
+    }
+  }
+
+
+  @media (prefers-reduced-data: reduce) {
+    * { background-image: none !important; }
+  }

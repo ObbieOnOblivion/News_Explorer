@@ -1,65 +1,69 @@
-const baseUrl = "";
-const apiKey = "";
+import axios from 'axios';
 
-class IronBeamApi { // i think the name of the class should allude to the app 
-    constructor() {
-      this._baseUrl = "backend";
-      this._headers = {
+class BackEndWeatherAPI {
+  constructor() {
+    this._api = axios.create({
+      baseURL: "backend-url",
+      timeout: 1000,
+      headers: {
         "Content-Type": "application/json",
-      };
-      this._apiKey = "I Love Growth";
-      this.auth = "-----------"
-    }
+        "X-API-Key": "I Love Growth"
+      }
+    });
 
-    setAUth(){
-      return fetch(`${this._baseUrl}/auth`, {
-        method: "GET",
+    this._api.interceptors.request.use(config => {
+      if (this.authToken) {
+        config.headers.Authorization = `Bearer ${this.authToken}`;
+      }
+      return config;
+    });
+
+    this._api.interceptors.response.use(
+      response => response.data,
+      error => {
+        if (error.response) {
+          return Promise.reject(`Error: ${error.response.status} - ${error.response.data?.message || 'Unknown error'}`);
+        }
+        return Promise.reject(`Network Error: ${error.message}`);
+      }
+    );
+  }
+
+  async setAuth() {
+    try {
+      const response = await this._api.get('/auth', {
         headers: {
           username: 23149353,
-          password: "TrippleTen",
+          password: "TrippleTen"
         }
-      }).then(this._handleResponse).then((res) =>{
-        console.log(res)
-      })
-    }
-  
-    _handleResponse(response) {
-      if (response.ok) {
-        return response.json();
-      }
-      return Promise.reject(`Error: ${response.status}`);
-    }
-  
-    get(endpoint) {
-      return fetch(`${this._baseUrl}${endpoint}`, {
-        method: 'GET',
-        headers: this._headers,
-      }).then(this._handleResponse);
-    }
-
-    post(endpoint, body) {
-      return fetch(`${this._baseUrl}${endpoint}`, {
-        method: 'POST',
-        headers: this._headers, // not all the header need athorization
-        body: JSON.stringify(body),
-      }).then(this._handleResponse);
-    }
-  
-    put(endpoint, body) {
-      return fetch(`${this._baseUrl}${endpoint}`, {
-        method: 'PUT',
-        headers: this._headers,
-        body: JSON.stringify(body),
-      }).then(this._handleResponse);
-    }
-  
-    delete(endpoint) {
-      return fetch(`${this._baseUrl}${endpoint}`, {
-        method: 'DELETE',
-        headers: this._headers,
-      }).then(this._handleResponse);
+      });
+      this.authToken = response.token;
+      return response;
+    } catch (error) {
+      console.error('Auth failed:', error);
+      throw error;
     }
   }
-  
-  // Export the Api class
-  export default IronBeamApi;
+
+  get(endpoint, config = {}) {
+    return this._api.get(endpoint, config);
+  }
+
+  post(endpoint, data, config = {}) {
+    return this._api.post(endpoint, data, config);
+  }
+
+  put(endpoint, data, config = {}) {
+    return this._api.put(endpoint, data, config);
+  }
+
+  delete(endpoint, config = {}) {
+    return this._api.delete(endpoint, config);
+  }
+
+  patch(endpoint, data, config = {}) {
+    return this._api.patch(endpoint, data, config);
+  }
+}
+
+export default BackEndWeatherAPI;
