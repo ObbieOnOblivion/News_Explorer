@@ -1,25 +1,32 @@
 /* Design Tokens */
 :root {
-    /* Colors */
-    --color-primary: hsl(221, 83%, 53%);
-    --color-surface: hsl(0, 0%, 100%);
-    
-    /* Typography */
-    --font-base: system-ui, sans-serif;
-    
-    /* Spacing */
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-  }
-  
-  /* Dark Mode */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --color-surface: hsl(240, 10%, 4%);
-    }
-  }
+  /* Colors */
+  --color-primary: hsl(221, 83%, 53%);
+  --color-surface: hsl(0, 0%, 100%);
 
+  /* Typography */
+  --font-base: system-ui, sans-serif;
 
-  @media (prefers-reduced-data: reduce) {
-    * { background-image: none !important; }
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+
+  --reset-box-sizing: border-box;
+  --reset-margin: 0;
+  --reset-padding: 0;
+  --reset-min-size: 0;
+  --reset-bg-repeat: no-repeat;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: hsl(240, 10%, 4%);
   }
+}
+
+@media (prefers-reduced-data: reduce) {
+  * {
+    background-image: none !important;
+  }
+}

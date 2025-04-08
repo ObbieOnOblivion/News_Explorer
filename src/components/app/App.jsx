@@ -1,16 +1,40 @@
-import "./App.css";
-import Header from "../header/Header";
+
+
+import { Outlet, Link } from 'react-router-dom';
 
 function App() {
-
-  return( 
-  <div className="app-body">
-    <Header/>
-  </div> 
-);
+  return (
+    <div className="app">
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+      </nav>
+      <main>
+        <Outlet /> {/* This is where route components will render */}
+      </main>
+    </div>
+  );
 }
 
 export default App;
+
+// og code 
+// import "./App.css";
+// import Header from "../header/Header";
+
+// function App() {
+//   return (
+//     <div className="app-body">
+//       <Header />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+
 
 // // Install react-use-gesture
 // import { useDrag } from 'react-use-gesture';
@@ -18,7 +42,6 @@ export default App;
 // const bind = useDrag(({ down, movement: [mx] }) => {
 //   // Handle swipe gestures
 // });
-
 
 // function Component() {
 //   const [isMobile] = useMediaQuery('(max-width: 768px)');
@@ -34,7 +57,6 @@ export default App;
 //   );
 // }
 
-
 // // vite.config.js
 // export default defineConfig({
 //   css: {
@@ -49,7 +71,6 @@ export default App;
 //   }
 // });
 
-
 // // Dynamic imports for heavy components
 // const HeavyComponent = React.lazy(() => import('./HeavyComponent'));
 
@@ -57,7 +78,6 @@ export default App;
 // <Suspense fallback={<MobileSpinner />}>
 //   <HeavyComponent />
 // </Suspense>
-
 
 // // Using styled-components
 // const Container = styled.div`
@@ -68,8 +88,6 @@ export default App;
 //   }
 // `;
 
-
-
 // /* src/index.css */
 // :root {
 //   --mobile-breakpoint: 768px;
@@ -78,4 +96,11 @@ export default App;
 // /* Mobile-first media queries */
 // @media (min-width: 768px) {
 //   /* Tablet+ styles */
+// }
+
+// when to overide reset values css
+
+// /* Special case for dialog backdrops */
+// dialog::backdrop {
+//   --reset-bg-repeat: repeat;
 // }

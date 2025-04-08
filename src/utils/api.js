@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 class BackEndWeatherAPI {
   constructor() {
@@ -7,11 +7,11 @@ class BackEndWeatherAPI {
       timeout: 1000,
       headers: {
         "Content-Type": "application/json",
-        "X-API-Key": "I Love Growth"
-      }
+        "X-API-Key": "I Love Growth",
+      },
     });
 
-    this._api.interceptors.request.use(config => {
+    this._api.interceptors.request.use((config) => {
       if (this.authToken) {
         config.headers.Authorization = `Bearer ${this.authToken}`;
       }
@@ -19,28 +19,30 @@ class BackEndWeatherAPI {
     });
 
     this._api.interceptors.response.use(
-      response => response.data,
-      error => {
+      (response) => response.data,
+      (error) => {
         if (error.response) {
-          return Promise.reject(`Error: ${error.response.status} - ${error.response.data?.message || 'Unknown error'}`);
+          return Promise.reject(
+            `Error: ${error.response.status} - ${error.response.data?.message || "Unknown error"}`,
+          );
         }
         return Promise.reject(`Network Error: ${error.message}`);
-      }
+      },
     );
   }
 
   async setAuth() {
     try {
-      const response = await this._api.get('/auth', {
+      const response = await this._api.get("/auth", {
         headers: {
           username: 23149353,
-          password: "TrippleTen"
-        }
+          password: "TrippleTen",
+        },
       });
       this.authToken = response.token;
       return response;
     } catch (error) {
-      console.error('Auth failed:', error);
+      console.error("Auth failed:", error);
       throw error;
     }
   }

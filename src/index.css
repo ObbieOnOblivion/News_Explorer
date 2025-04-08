@@ -1,9 +1,7 @@
-@import url('./styles/custom-props.css');
+@import url("./styles/custom-props.css");
 
-/* ===== React/Vite Optimized Reset ===== */
 @layer reset, base, utilities;
 
-/* 1. Reset Layer (Low Specificity) */
 @layer reset {
   :where(:root) {
     color-scheme: light dark;
@@ -13,12 +11,12 @@
   }
 
   :where(*, *::before, *::after, ::backdrop) {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    min-width: 0;
-    min-height: 0;
-    background-repeat: no-repeat;
+    box-sizing: var(--reset-box-sizing);
+    margin: var(--reset-margin);
+    padding: var(--reset-padding);
+    min-width: var(--reset-min-size);
+    min-height: var(--reset-min-size);
+    background-repeat: var(--reset-bg-repeat);
   }
 
   :where(html, body, #root) {
@@ -34,12 +32,11 @@
   }
 }
 
-/* 2. Base Styles Layer */
 @layer base {
   :where(button, [role="button"], input, select, textarea) {
     appearance: none;
     font: inherit;
-    color: inherit;
+    color: var(--color-primary, inherit);
     background: transparent;
     border: 1px solid transparent;
     outline-offset: 3px;
@@ -90,5 +87,4 @@
       transition-duration: 0.01ms !important;
     }
   }
-
 }
