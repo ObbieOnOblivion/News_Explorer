@@ -1,0 +1,15 @@
+/* src/components/HomePage.module.css */
+.homeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: white;
+  }
+  
+  .homeTitle {
+    font-size: 3.75rem; /* 6xl = 3.75rem (60px) */
+    font-weight: 700; /* bold */
+    color: rgba(0, 0, 0, 0.2); /* text-black/20 */
+    letter-spacing: 0.1em; /* tracking-widest */
+  }

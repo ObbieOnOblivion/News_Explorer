@@ -6,6 +6,7 @@
   :where(:root) {
     color-scheme: light dark;
     -webkit-text-size-adjust: none;
+    -webkit-overflow-scrolling: touch; /* his is new  mightr belong in the base layer */
     text-size-adjust: none;
     touch-action: manipulation; /* Better mobile touch */
   }
@@ -43,6 +44,10 @@
     margin: 0;
     -webkit-tap-highlight-color: transparent;
     min-touch-target: 44px; /* Mobile accessibility */
+    overflow-x: auto; /*this is new */
+    overscroll-behavior-x: contain;  /*this is new */
+    scroll-snap-type: x mandatory;  /*this is new */
+    
   }
 
   :where(img, svg, video, canvas) {
@@ -88,3 +93,12 @@
     }
   }
 }
+
+
+/* overflowX: 'auto',
+overscrollBehaviorX: 'contain',
+WebkitOverflowScrolling: 'touch', // Only if supporting iOS < 13
+scrollbarWidth: 'none',
+msOverflowStyle: 'none',
+'&::-webkit-scrollbar': { display: 'none' },
+whiteSpace: 'nowrap' // For horizontal content */
