@@ -1,15 +1,27 @@
-/* src/components/HomePage.module.css */
+/* src/components/HomePage.css */
 .homeContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: white;
+  background-color: #f0f9ff; /* Equivalent to Tailwind's bg-sky-50 */
+  /* min-height: 100vh; Equivalent to min-h-screen */
+  padding: 1.5rem; /* Equivalent to p-6 (6 * 0.25rem = 1.5rem) */
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  min-height: 70vh;
+  background-image: url("../assets/Home-page.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.homeTitle {
+  font-size: 1.875rem; /* Equivalent to text-3xl (3 * 0.25rem = 0.75rem) */
+  font-weight: 700; /* Equivalent to font-bold */
+  color: #1f2937; /* Equivalent to text-gray-800 */
+}
+
+@media (max-width: 830px) {
+  .homeContainer{
+    min-height: 45vh;
+    background-image: url("../assets/Home-page-mobile.png");
   }
-  
-  .homeTitle {
-    font-size: 3.75rem; /* 6xl = 3.75rem (60px) */
-    font-weight: 700; /* bold */
-    color: rgba(0, 0, 0, 0.2); /* text-black/20 */
-    letter-spacing: 0.1em; /* tracking-widest */
-  }
+}

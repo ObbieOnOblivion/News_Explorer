@@ -11,17 +11,13 @@ import MainLayout from './layouts/MainLayout.jsx';
 
 // Page Components
 import HomePage from './pages/HomePage';
-// import AboutPage from './pages/AboutPage';
-// import DashboardPage from './pages/DashboardPage';
-// import LoginPage from './pages/LoginPage';
-// import NotFoundPage from './pages/NotFoundPage';
 import ComingSoonPage from './pages/CommingSoonPage.jsx'
 
 // please keep your git flow clean :)
 
 const router = createBrowserRouter([
   {
-    element: <MainLayout />, // Shared navbar/footer
+    element: <MainLayout />, // Shared header/footer
     children: [
       { path: '/', element: <HomePage /> },
       { path: '/about', element: <ComingSoonPage /> },
